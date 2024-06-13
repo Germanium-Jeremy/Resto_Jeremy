@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
   const [response, setResponse] = useState(null);
@@ -21,12 +22,14 @@ const Landing = () => {
             .catch(error => {
               console.error('Error posting data:', error);
             });
-        }, []);
+      }, []);
 
   return (
     <div>
       {response ? <div>{response}</div> : <div>Loading...</div>}
       {name ? <div>{name}</div> : <div>Still Loading...</div>}
+      <Link to={'/login'}>Login</Link>
+      <p>&#40; &#41;</p>
     </div>
   );
 };

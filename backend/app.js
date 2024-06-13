@@ -1,31 +1,44 @@
-const express = require("express")
-const cors = require('cors')
-const mangoose = require("mongoose")
-require('dotenv').config()
+// REQUIRE PACKAGES AND CONFIGURE THEM
+const express = require("express");
+const cors = require("cors");
+const mangoose = require("mongoose");
+require("dotenv").config();
 
-const app = express()
-app.use(express.json())
-app.use(cors())
+// MIDDLEWARES CONFIGURATIONS
+const app = express();
+app.use(express.json());
+// app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 
-const userRoutes = require("./routes/userRouter")
+// ROUTES CONFIGURATIONS
+const userRoutes = require("./routes/userRouter");
 
-app.get("/", (req, res) => res.send("Index Route of German-Resto"))
+// DOTENV AND CONFIG VARIABLES READINGS
+const port = process.env.PORT;
 
-app.use(userRoutes)
+// USING ROUTES
+app.use(userRoutes);
 
+// SIMPLE ROUTES
+app.get("/", (req, res) => res.send("Index Route of German-Resto"));
 app.post("/", (req, res) => {
-     const name = req.body.name;
-     if (!name) return res.status(400).json("No Name.");
+  const name = req.body.name;
+  if (!name) return res.status(400).json("No Name.");
 
-     console.log(name)
-     res.status(200).json({ name: name });
+  console.log(name);
+  res.status(200).json({ name: name });
 });
 
+// MONGO CONNECTIONS
 mangoose
   .connect(process.env.DB_MINE, {})
   .then(() => console.log("Mongo Db Connection Connected Successfully"))
   .catch((error) => console.log("Connection Mongo Db Failed: ", error.message));
 
-const port = process.env.PORT
-
-app.listen(port, (req, res) => console.log(`Server running on port ${port}`))
+// PORT CONNECTION FOR SERVER
+app.listen(port, (req, res) => console.log(`Server running on port ${port}`));

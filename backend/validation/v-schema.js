@@ -8,6 +8,11 @@ const authSchema = joi.object({
      location: joi.string().required().min(5)
 })
 
+const loginSchema = joi.object({
+     email: joi.string().email().min(5).max(30).lowercase().required(),
+     password: joi.string().min(6).max(30).required(),
+})
+
 module.exports = {
-     authSchema
+     authSchema, loginSchema
 }

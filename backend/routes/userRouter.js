@@ -10,4 +10,5 @@ router.post("/signup", registerUser);
 router.post("/login", signinUser);
 router.get("/getAllUsers", getAllUsers);
 
+
 module.exports = router;

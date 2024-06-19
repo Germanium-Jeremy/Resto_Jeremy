@@ -46,3 +46,5 @@ mangoose
 
 // PORT CONNECTION FOR SERVER
 app.listen(port, (req, res) => console.log(`Server running on port ${port}`));
+
+module.exports = app

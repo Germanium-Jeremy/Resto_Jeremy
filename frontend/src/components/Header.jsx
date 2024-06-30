@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
-import { FaHome, FaBeer, FaCarrot, FaBell, FaSignInAlt, FaUserAlt, FaBuffer, FaBars } from 'react-icons/fa'
+import { FaBell, FaSignInAlt, FaUserAlt, FaBuffer, FaBars } from 'react-icons/fa'
 import Profile from '../assets/react.svg'
 
 const Header = () => {

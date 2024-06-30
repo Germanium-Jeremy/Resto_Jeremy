@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { FaGoogle } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 import Image1 from '../assets/Potage.webp'
 
 const Auth = () => {
@@ -21,7 +22,7 @@ const Auth = () => {
 
   console.log("Response: ", responseEmail, "Error: ", errorEmail)
   return (
-    <div className={`flex justify-center items-center bg-auth-img bg-cover min-h-[10cm] px-[.4rem] md:px-[1rem] py-[2rem] md:py-[6rem] md:max-h-[20cm] min-[800px]:max-h-[24cm] max-[850px]:h-screen`}>
+    <motion.div className={`flex justify-center items-center bg-auth-img bg-cover min-h-[10cm] px-[.4rem] md:px-[1rem] py-[2rem] md:py-[6rem] md:max-h-[20cm] min-[800px]:max-h-[24cm] max-[850px]:h-screen`} initial={{w: 0}} animate={{w: window.innerWidth}} exit={{opacity: 0}}>
       <div className={`blur-bg px-5 py-4 bg-slate-950 rounded-xl text-white w-full md:w-2/3 lg:w-2/4 ${signup == true ? "hidden" : "block"}`}>
         <div className={`flex flex-col items-center justify-center`}>
           <img src={Image1} alt="Image1" className={`rounded-full h-12 w-12`} />
@@ -59,7 +60,7 @@ const Auth = () => {
         <p className={`text-xs font-extralight my-2`}>You agree to our <Link to={'/'} className={`font-semibold`}>terms of services</Link></p>
         <button className={`text-amber-400 text-center w-full`} onClick={showAuth}>Have account</button>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

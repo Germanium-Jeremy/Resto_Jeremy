@@ -45,6 +45,6 @@ mangoose
   .catch((error) => console.log("Connection Mongo Db Failed: ", error.message));
 
 // PORT CONNECTION FOR SERVER
-app.listen(port, (req, res) => console.log(`Server running on port ${port}`));
+app.listen(port, (req, res) => console.log(`Server running on http://localhost:${port}`));
 
 module.exports = app

@@ -1,35 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'
-import { Link } from 'react-router-dom';
+// import axios from 'axios'
+// import { Link } from 'react-router-dom';
+import Hero from '../components/Hero';
+import Promise from '../components/Promise';
+import LandingSlide from '../components/LandingSlide';
+import Awards from '../components/Awards';
+import ReachUs from '../components/ReachUs';
 
 const Landing = () => {
-  const [response, setResponse] = useState(null);
-  const [name, setName] = useState(null);
-
-     useEffect(() => {
-          axios.get('http://localhost:5174/')
-          .then(response => { setResponse(response.data)})
-          .catch(error => {
-          console.error('Error fetching data:', error);
-          });
-     }, []);
-     
-     useEffect(() => {
-          axios.post('http://localhost:5174/', { name: "Germany" })
-            .then(response => {
-               setName(response.data.name);
-            })
-            .catch(error => {
-              console.error('Error posting data:', error);
-            });
-      }, []);
-
   return (
-    <div>
-      {response ? <div>{response}</div> : <div>Loading...</div>}
-      {name ? <div>{name}</div> : <div>Still Loading...</div>}
-      <Link to={'/login'}>Login</Link>
-      <p>&#40; &#41;</p>
+    <div className='pb-[2rem]'>
+      <div className={`px-[1rem] md:px-[3rem] text-gray-950 pt-5 max-sm:pb-5 md:flex md:gap-6 w-full justify-center h-fit bg-black`}>
+        <Hero />
+      </div>
+      <div className={`px-[1rem] md:px-[3rem] py-5 bg-auth-img1 bg-cover bg-opacity-20`}>
+        <Promise />
+      </div>
+      <LandingSlide />
+      <Awards />
+      <ReachUs />
     </div>
   );
 };

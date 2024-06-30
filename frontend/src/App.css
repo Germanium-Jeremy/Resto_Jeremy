@@ -9,6 +9,15 @@
      display: none;
 }
 
-/* div > p {
-     color: aqua;
-} */
+.bg-auth-img {
+     background: url(./assets/Potage.webp) no-repeat fixed center;
+}
+
+.bg-auth-img1 {
+     background: url(./assets/Potage1.jpg) no-repeat fixed center;
+}
+
+.bg-blur {
+     backdrop-filter: blur(120px);
+     filter: blur(20%);
+}

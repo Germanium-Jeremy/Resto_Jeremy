@@ -1,9 +1,30 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Image1 from '../assets/Potage.webp'
+import { UserContext } from '../components/UserContext'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/ReactToastify.css'
+import axios from 'axios'
 
 const Login = () => {
+     const [password, setPassword] = useState('')
+     const { emailContext } = useContext(UserContext)
+     const navigate = useNavigate()
+
+     const hangleLogin = (e) => {
+          e.preventDefault()
+          axios.post("http://localhost:5174/login", { email: emailContext, password: password})
+          .then(response => {
+               localStorage.setItem("User", JSON.stringify(response.data.user))
+               localStorage.setItem("Token", JSON.stringify(response.data.token))
+               console.log(response.data.message)
+               toast.success(response.data.message)
+          }).catch(error => {
+               console.log(error.response.data)
+               toast.warn(error.response.data)
+          })
+     }
 
   return (
      <motion.div className={`flex justify-center items-center bg-auth-img bg-cover min-h-[7cm] px-[.4rem] md:px-[1rem] py-[2rem] md:py-[6rem] md:max-h-[20cm] min-[800px]:max-h-[24cm]`} 
@@ -15,13 +36,16 @@ const Login = () => {
                </div>
                <div className={`flex flex-col gap-1 mt-2`}>
                     <label htmlFor="password">Password</label>
-                    <input type="password" id="password" className={`w-full px-3 py-1 rounded-md border border-white bg-transparent`} placeholder='Enter password' required />
+                    <input type="password" id="password" className={`w-full px-3 py-1 rounded-md border border-white bg-transparent`} placeholder='Enter password'
+                     required onChange={(e) => setPassword(e.target.value)} />
                </div>
                <div className={`text-end pt-3`}>
                     <Link to={'/forgot'} className={` w-full text-right`}>Forgot Password</Link>
                </div>
-               <button type='submit' className={`rounded-md w-full bg-amber-500 py-1 mt-2 shadow hover:shadow-white outline-none`}>Log in</button>
+               <button type='submit' onClick={hangleLogin} className={`rounded-md w-full bg-amber-500 py-1 mt-2 shadow hover:shadow-white outline-none`}>Log in</button>
           </form>
+          <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true}
+           newestOnTop={true} rtl={false} pauseOnFocusLoss pauseOnHover theme="light" transition: Zoom />
      </motion.div>
   )
 }

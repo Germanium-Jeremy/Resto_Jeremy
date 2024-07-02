@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import Image1 from '../assets/Potage.webp'
 import { UserContext } from '../components/UserContext'
 import axios from 'axios'
+import { ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/ReactToastify.css'
 
 const Signin = () => {
      const [username, setUsername] = useState('')
@@ -11,25 +13,25 @@ const Signin = () => {
      const [phone, setPhone] = useState(0)
      const [location, setLocation] = useState('')
      const [password, setPassword] = useState('')
-     const [response, setResponse] = useState(null)
-     const [error, setError] = useState(null)
+     // const [response, setResponse] = useState(null)
+     // const [error, setError] = useState(null)
      const navigate = useNavigate()
      const { emailContext } = useContext(UserContext);
-     const { user, setUser } = useContext(UserContext);
+     // const { user, setUser } = useContext(UserContext);
 
      const handleSignup = (e) => {
           e.preventDefault()
-          // axios.post("http://localhost:5174/signup", { username: username, email: emailContext, dob: dob, password: password, phone: phone, location: location})
-          axios.post("https://resto-jeremy.vercel.app/signup", { username: username, email: emailContext, dob: dob, password: password, phone: phone, location: location})
+          axios.post("http://localhost:5174/signup", { username: username, email: emailContext, dob: dob, password: password, phone: phone, location: location})
+          // axios.post("https://resto-jeremy.vercel.app/signup", { username: username, email: emailContext, dob: dob, password: password, phone: phone, location: location})
           .then(response => {
-               setResponse(response.data)
-               setUser(response.data.user)
                localStorage.setItem("User", JSON.stringify(response.data.user))
                localStorage.setItem("Token", JSON.stringify(response.data.token))
-               // console.log(response.data.user.email)
                navigate('/')
           })
-          .catch(error => setError(error.data))
+          .catch(error => {
+               console.log(error.response.data)
+               toast.warn(error.response.data)
+          })
      }
 
   return (
@@ -71,6 +73,8 @@ const Signin = () => {
                </div>
                <button type='submit' className={`rounded-md w-full bg-amber-500 py-1 mt-2 shadow hover:shadow-white outline-none`}>Register</button>
           </form>
+          <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true}
+           newestOnTop={true} rtl={false} pauseOnFocusLoss pauseOnHover theme="light" transition: Zoom />
      </motion.div>
   )
 }

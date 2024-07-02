@@ -1,52 +1,28 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { motion } from 'framer-motion'
+import Image1 from '../assets/Potage.webp'
 
 const Login = () => {
-     const [loginEmail, setEmail] = useState("")
-     const [loginPassword, setPassword] = useState("")
-     const [loginResponse, setResponse] = useState(null)
 
-     const submitted = async(e) => {
-          e.preventDefault()
-          axios.post("http://localhost:5174/login", {
-               email: loginEmail,
-               password: loginPassword
-             })
-             .then(response => {
-               setResponse(response.data)
-               console.log("Response: ", response)
-               localStorage.setItem("Token", response.data.token)
-               localStorage.setItem("User", JSON.stringify(response.data.user))
-               location.href = '/'
-             })
-             .catch(error => console.log("Error Caught: ", error));
-     }
   return (
-    <div>
-     <h1 className='text-xl'>Login to german resto</h1>
-     <form className='w-full' onSubmit={submitted}>
-          <div className=''>
-               <label htmlFor="">Email</label>
-               <input type="email" id="email" onChange={(e) => setEmail(e.target.value)} value={loginEmail} autoComplete='on' />
-          </div>
-          <div>
-               <label htmlFor="">Password</label>
-               <input type="password" id="password" onChange={(e) => setPassword(e.target.value)} value={loginPassword} autoComplete='off' />
-          </div>
-          <Link to={'/signup'}>Don't have Account?</Link>
-          <button type='submit' className='block'>SignIn</button>
-     </form>
-     <div>
-          <Link to={'/google'}>Login With Google</Link>
-     </div>
-     {loginResponse && (
-        <div>
-          <p className='text-center text-xl text-white'>Login Response: {JSON.stringify(loginResponse)}</p>
-        </div>
-      )}
-    </div>
-
+     <motion.div className={`flex justify-center items-center bg-auth-img bg-cover min-h-[7cm] px-[.4rem] md:px-[1rem] py-[2rem] md:py-[6rem] md:max-h-[20cm] min-[800px]:max-h-[24cm]`} 
+     initial={{bottom: "-100%"}} animate={{bottom: 0}} exit={{bottom: "100%", opacity: 0}} transition={{duration: 0.4, delay: 0.2}}>
+          <form className={`blur-bg px-5 py-4 bg-slate-950 rounded-xl text-white w-full md:w-2/3 lg:w-2/4`}>
+               <div className={`flex flex-col items-center justify-center`}>
+                    <img src={Image1} alt="Image1" className={`rounded-full h-12 w-12`} />
+                    <h2 className={`font-bold`}>Account Login</h2>
+               </div>
+               <div className={`flex flex-col gap-1 mt-2`}>
+                    <label htmlFor="password">Password</label>
+                    <input type="password" id="password" className={`w-full px-3 py-1 rounded-md border border-white bg-transparent`} placeholder='Enter password' required />
+               </div>
+               <div className={`text-end pt-3`}>
+                    <Link to={'/forgot'} className={` w-full text-right`}>Forgot Password</Link>
+               </div>
+               <button type='submit' className={`rounded-md w-full bg-amber-500 py-1 mt-2 shadow hover:shadow-white outline-none`}>Log in</button>
+          </form>
+     </motion.div>
   )
 }
 

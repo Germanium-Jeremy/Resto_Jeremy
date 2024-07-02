@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 const Landing = () => {
 
   return (
-    <motion.div className='pb-[2rem]' initial={{width: 0}} animate={{width: window.innerWidth}} exit={{x: window.innerWidth}} transition={{duration: 0.1, delay: 0.2}}>
+    <motion.div className='pb-[2rem]' initial={{bottom: "-100%"}} animate={{bottom: 0}} exit={{bottom: "100%"}} transition={{duration: 0.2, delay: 0.2}}>
       <motion.div className={`px-[1rem] md:px-[3rem] text-gray-950 pt-5 max-sm:pb-5 sm:pb-5 md:flex md:gap-6 w-full justify-center h-fit bg-black`} 
         initial={{opacity: 0, y: -75}} whileInView={{opacity: 1, y: 0}} exit={{opacity: 0, y: 20}} transition={{ duration: 0.2, delay: 0.2 }}>
         <Hero />

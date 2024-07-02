@@ -10,15 +10,38 @@ const { authSchema, loginSchema } = require("../validation/v-schema");
 // REQUIRE DOTENV VARIABLES
 const jwt_secret = process.env.JWT_SECRET;
 
+// EMAIL FIRST SIGNUP
+const emailSignup = async (req, res) => {
+  try {
+    let email = req.body.email;
+    if (email == null) return res.status(400).send("No Email Provided");
+
+    let user = await userModel.findOne({ email: email });
+    if (user){
+      return res.status(400).json({ message: `User with ${email} already exists`})
+    }
+    console.log(email);
+
+    return res.status(200).send(email);
+  } catch (error) {
+    if (error.isJoi === true) return res.status(400).send(error.details[0].message);
+    console.log("Error", error.message);
+    console.log("Jpi Error", error.details[0].message)
+    return res.status(500).send("Internal Server Error At Backend");
+  }
+};
+
 // REGISTER USER FUNCTION
 const registerUser = async (req, res) => {
   try {
-    const response = await authSchema.validateAsync(req.body);
+    let response = null
+    try {
+      // response = await authSchema.validateAsync(req.body);
+      response = req.body;
+    } catch (error) {
+      console.log(error.message)
+    }
     console.log(response);
-
-    let user = await userModel.findOne({ email: response.email });
-    if (user)
-      return res.status(400).send(`User with ${response.email} already exists`);
 
     const salt = await bcrypt.genSalt(10);
     response.password = await bcrypt.hash(response.password, salt);
@@ -27,13 +50,11 @@ const registerUser = async (req, res) => {
     await newUser.save();
     const token = jwt.sign({ id: newUser._id }, jwt_secret);
 
-    res
-      .status(201)
-      .send({
-        user: newUser,
-        token: token,
-        message: "registration successfully",
-      });
+    res.status(201).send({
+      user: newUser,
+      token: token,
+      message: "registration successfully",
+    });
   } catch (error) {
     if (error.isJoi === true)
       return res.status(400).send(error.details[0].message);
@@ -82,4 +103,4 @@ const getAllUsers = async (req, res) => {
 };
 
 // EXPORTING FUNCTIONS
-module.exports = { registerUser, getAllUsers, signinUser };
+module.exports = { registerUser, emailSignup, getAllUsers, signinUser };

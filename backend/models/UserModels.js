@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema(
   {
-    username: { type: String, required: true, minlength: 5, maxlength: 30 },
-    email: { type: String, required: true, minlength: 10, maxlength: 50, unique: true },
-    password: { type: String, required: true, minlength: 6 },
-    age: { type: Number, required: false },
-    location: { type: String, required: true, minlength: 5, maxlength: 50 },
+    email: { type: String, required: false, minlength: 10, maxlength: 50, unique: false },
+    username: { type: String, required: false, minlength: 5, maxlength: 30 },
+    dob: { type: Date, required: false, },
+    password: { type: String, required: false, minlength: 6 },
+    phone: { type: Number, required: false },
+    location: { type: String, required: false, minlength: 5, maxlength: 50 },
   }, { timestamps: true }
 );
 

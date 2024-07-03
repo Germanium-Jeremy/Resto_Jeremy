@@ -33,7 +33,7 @@ const Header = () => {
       // {response ? <div>{response}</div> : <div>Loading...</div>}
       // {name ? <div>{name}</div> : <div>Still Loading...</div>}
   return (
-    <nav className='fixed top-0 right-0 left-0 bg-black text-white px-[2rem] max-[450px]:px-3 py-3 flex items-center justify-between'>
+    <nav className='fixed top-0 right-0 left-0 bg-black text-white px-[2rem] max-[450px]:px-3 py-3 flex items-center justify-between z-[5]'>
       <Link to={'/'}>
         <h1 className={`text-2xl font-bold max-sm:hidden`}>DELIGHT<span className={`text-amber-500`}>FAST</span></h1>
         <span className={`sm:hidden text-3xl font-bold`}><FaBuffer /></span>

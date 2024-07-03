@@ -1,6 +1,7 @@
 import './App.css'
 import { Footer } from './components/Footer'
 import Header from './components/Header'
+import Decorations from './components/Decorations'
 import AnimatedRoutes from './components/AnimatedRoutes'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
@@ -10,6 +11,7 @@ function App() {
   return (
     <UserProvider>
       <div className='w-full min-h-screen h-full bg-[#eff] pt-[3rem]'>
+        <Decorations />
         <Router>
           <div>
             <Header />

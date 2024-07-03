@@ -6,7 +6,7 @@ require("dotenv").config();
 // REQUIRE OTHER FUNCTIONS
 const userModel = require("../models/UserModels");
 const { authSchema, loginSchema } = require("../validation/v-schema");
-const { emailValid } = require("../validation/validateInputs")
+const { emailValid } = require("../validation/validateInputs");
 
 // REQUIRE DOTENV VARIABLES
 const jwt_secret = process.env.JWT_SECRET;
@@ -34,7 +34,8 @@ const emailSignup = async (req, res) => {
 const emailLogin = async (req, res) => {
   try {
     let email = req.body.email;
-    if (email == "") return res.status(400).send({ message: "No Email provided" });
+    if (email == "")
+      return res.status(400).send({ message: "No Email provided" });
     console.log(email);
 
     let user = await userModel.findOne({ email: email });
@@ -42,9 +43,12 @@ const emailLogin = async (req, res) => {
 
     return res.status(200).send(email);
   } catch (error) {
-    if (error.isJoi === true) return res.status(400).send(error.details[0].message);
+    if (error.isJoi === true)
+      return res.status(400).send(error.details[0].message);
     console.log("Error", error.message);
-    return res.status(500).send({message: "Internal Server Error At Backend"});
+    return res
+      .status(500)
+      .send({ message: "Internal Server Error At Backend" });
   }
 };
 
@@ -73,7 +77,8 @@ const registerUser = async (req, res) => {
       message: "registration successfully",
     });
   } catch (error) {
-    if (error.isJoi === true) return res.status(400).send(error.details[0].message);
+    if (error.isJoi === true)
+      return res.status(400).send(error.details[0].message);
     console.log(error.message);
     return res.status(500).send("Internal Server Error At Backend");
   }
@@ -87,17 +92,24 @@ const signinUser = async (req, res) => {
     console.log(response);
 
     let user = await userModel.findOne({ email: response.email });
-    console.log(user)
+    console.log(user);
 
     const passMatch = await bcrypt.compare(response.password, user.password);
     if (!passMatch) return res.status(300).send("Password doesn't match");
 
-    const token = jwt.sign({
-       id: user._id }, jwt_secret);
-    res.status(200).send({ user: user, token: token, message: "Login Successfully" });
+    const token = jwt.sign(
+      {
+        id: user._id,
+      },
+      jwt_secret
+    );
+    res
+      .status(200)
+      .send({ user: user, token: token, message: "Login Successfully" });
   } catch (error) {
-    if (error.isJoi === true) return res.status(400).send(error.details[0].message);
-      console.log(error.message);
+    if (error.isJoi === true)
+      return res.status(400).send(error.details[0].message);
+    console.log(error.message);
     return res.status(500).send("Internal Server Error, Please Try Again");
   }
 };
@@ -109,11 +121,18 @@ const getAllUsers = async (req, res) => {
     if (!allUsers) return res.status(200).send("No Users");
     return res.status(201).send(allUsers);
   } catch (error) {
-    if (error.isJoi === true) return res.status(400).send(error.details[0].message);
+    if (error.isJoi === true)
+      return res.status(400).send(error.details[0].message);
     console.log(error.message);
     return res.status(500).send("Internal Server Error, Please Try Again");
   }
 };
 
 // EXPORTING FUNCTIONS
-module.exports = { registerUser, emailSignup, getAllUsers, signinUser, emailLogin };
+module.exports = {
+  registerUser,
+  emailSignup,
+  getAllUsers,
+  signinUser,
+  emailLogin,
+};

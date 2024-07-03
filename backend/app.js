@@ -7,17 +7,12 @@ require("dotenv").config();
 // MIDDLEWARES CONFIGURATIONS
 const app = express();
 app.use(express.json());
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: false
-}));
+app.use(cors());
 
 // ROUTES CONFIGURATIONS
 const userRoutes = require("./routes/userRouter");
-const productRoutes = require("./routes/procuctsRoute")
-const orderRoutes = require("./routes/OrderRoutes")
+const productRoutes = require("./routes/procuctsRoute");
+const orderRoutes = require("./routes/OrderRoutes");
 
 // DOTENV AND CONFIG VARIABLES READINGS
 const port = process.env.PORT;
@@ -45,6 +40,8 @@ mangoose
   .catch((error) => console.log("Connection Mongo Db Failed: ", error.message));
 
 // PORT CONNECTION FOR SERVER
-app.listen(port, (req, res) => console.log(`Server running on http://localhost:${port}`));
+app.listen(port, (req, res) =>
+  console.log(`Server running on http://localhost:${port}`)
+);
 
-module.exports = app
+module.exports = app;

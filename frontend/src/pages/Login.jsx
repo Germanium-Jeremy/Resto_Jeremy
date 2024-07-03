@@ -16,7 +16,8 @@ const Login = () => {
      const hangleLogin = (e) => {
           e.preventDefault()
           setLoading(true)
-          axios.post("http://localhost:5174/login", { email: emailContext, password: password})
+          // axios.post("http://localhost:5174/login", { email: emailContext, password: password})
+          axios.post("https://resto-jeremy.vercel.app/login", { email: emailContext, password: password})
           .then(response => {
                setLoading(false)
                localStorage.setItem("User", JSON.stringify(response.data.user))

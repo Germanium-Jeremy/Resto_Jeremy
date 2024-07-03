@@ -21,8 +21,8 @@ const Signin = () => {
 
      const handleSignup = (e) => {
           e.preventDefault()
-          axios.post("http://localhost:5174/signup", { username: username, email: emailContext, dob: dob, password: password, phone: phone, location: location})
-          // axios.post("https://resto-jeremy.vercel.app/signup", { username: username, email: emailContext, dob: dob, password: password, phone: phone, location: location})
+          // axios.post("http://localhost:5174/signup", { username: username, email: emailContext, dob: dob, password: password, phone: phone, location: location})
+          axios.post("https://resto-jeremy.vercel.app/signup", { username: username, email: emailContext, dob: dob, password: password, phone: phone, location: location})
           .then(response => {
                localStorage.setItem("User", JSON.stringify(response.data.user))
                localStorage.setItem("Token", JSON.stringify(response.data.token))

@@ -43,8 +43,8 @@ const Auth = () => {
   const handleLoginEmail = (e) => {
     e.preventDefault()
     setLoading(true)
-    axios.post("http://localhost:5174/emailLogin", { email: emailLogin })
-    // axios.post("https://resto-jeremy.vercel.app/emailLogin", { email: emailLogin })
+    // axios.post("http://localhost:5174/emailLogin", { email: emailLogin })
+    axios.post("https://resto-jeremy.vercel.app/emailLogin", { email: emailLogin })
     .then(responseEmail => {
       setLoading(false)
       setEmailContext(responseEmail.data)

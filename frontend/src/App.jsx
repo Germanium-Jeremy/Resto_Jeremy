@@ -3,6 +3,7 @@ import { Footer } from './components/Footer'
 import Header from './components/Header'
 import AnimatedRoutes from './components/AnimatedRoutes'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import {UserProvider} from './components/UserContext'
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
             <Footer />
           </div>
         </Router>
+        <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true} newestOnTop={true} rtl={false}
+          pauseOnFocusLoss pauseOnHover theme="light" transition: Zoom />
       </div>
     </UserProvider>
   )

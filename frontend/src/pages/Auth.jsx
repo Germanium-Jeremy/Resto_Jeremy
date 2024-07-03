@@ -5,7 +5,7 @@ import { FaGoogle } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import Image1 from '../assets/Potage.webp'
 import { UserContext } from '../components/UserContext'
-import { Flip, Slide, ToastContainer, Zoom, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/ReactToastify.css'
 
 const Auth = () => {
@@ -49,6 +49,7 @@ const Auth = () => {
       setLoading(false)
       setEmailContext(responseEmail.data)
       setResponseEmail(responseEmail.data)
+      console.log(responseEmail)
       navigate('/login')
     })
     .catch(error => {
@@ -78,7 +79,8 @@ const Auth = () => {
           <label htmlFor="email">Email address</label>
           <input type="email" id="email" className={`w-full px-3 py-1 rounded-md border border-white bg-transparent`} placeholder='Enter email' required
             onChange={(e) => setEmailLogin(e.target.value)} value={emailLogin} />
-          {loading == false ? <button type='submit' className={`rounded-md w-full bg-amber-500 py-1 mt-2 shadow hover:shadow-white`}>Sign in with Email</button> : <button type='disabled' className={`rounded-md w-full bg-gray-600 py-1 mt-2 shadow hover:shadow-white cursor-not-allowed`}>Loading...</button>}
+          {loading == false ? <button type='submit' className={`rounded-md w-full bg-amber-500 py-1 mt-2 shadow hover:shadow-white`}>Sign in with Email</button> :
+           <button type='disabled' className={`rounded-md w-full bg-gray-600 py-1 mt-2 shadow hover:shadow-white cursor-not-allowed`}>Loading...</button>}
         </form>
         <p className={`text-xs font-extralight my-2`}>You agree to our <Link to={'/'} className={`font-semibold`}>terms of services</Link></p>
         <button className={`text-amber-400 text-center w-full`} onClick={showAuth}>Don't have account</button>
@@ -99,13 +101,12 @@ const Auth = () => {
           <label htmlFor="email">Email address</label>
           <input type="email" id="email" className={`w-full px-3 py-1 rounded-md border border-white bg-transparent`} placeholder='Enter email' required
           onChange={(e) => setEmail(e.target.value)} />
-          {loading == false ? <button type='submit' className={`rounded-md w-full bg-amber-500 py-1 mt-2 shadow hover:shadow-white`}>Sign up with Email</button> : <button type='disabled' className={`rounded-md w-full bg-gray-600 py-1 mt-2 shadow hover:shadow-white cursor-not-allowed`}>Loading...</button>}
+          {loading == false ? <button type='submit' className={`rounded-md w-full bg-amber-500 py-1 mt-2 shadow hover:shadow-white`}>Sign up with Email</button> :
+           <button type='disabled' className={`rounded-md w-full bg-gray-600 py-1 mt-2 shadow hover:shadow-white cursor-not-allowed`}>Loading...</button>}
         </form>
         <p className={`text-xs font-extralight my-2`}>You agree to our <Link to={'/'} className={`font-semibold`}>terms of services</Link></p>
         <button className={`text-amber-400 text-center w-full`} onClick={showAuth}>Have account</button>
       </div>
-      <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true} newestOnTop={true} rtl={false}
-        pauseOnFocusLoss pauseOnHover theme="light" transition: Zoom />
     </motion.div>
   )
 }

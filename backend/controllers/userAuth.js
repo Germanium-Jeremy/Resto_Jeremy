@@ -6,6 +6,7 @@ require("dotenv").config();
 // REQUIRE OTHER FUNCTIONS
 const userModel = require("../models/UserModels");
 const { authSchema, loginSchema } = require("../validation/v-schema");
+const { emailValid } = require("../validation/validateInputs")
 
 // REQUIRE DOTENV VARIABLES
 const jwt_secret = process.env.JWT_SECRET;
@@ -15,15 +16,16 @@ const emailSignup = async (req, res) => {
   try {
     let email = req.body.email;
     if (email == null) return res.status(400).send("No Email Provided");
-    console.log(email)
+    console.log(email);
 
     let user = await userModel.findOne({ email: email });
-    if (user) return res.status(400).send({message: "Email already exists"})
+    if (user) return res.status(400).send({ message: "Email already exists" });
     console.log("Email doesn't exists");
 
     return res.status(200).send(email);
   } catch (error) {
-    if (error.isJoi === true) return res.status(400).send(error.details[0].message);
+    if (error.isJoi === true)
+      return res.status(400).send(error.details[0].message);
     console.log("Error", error.message);
     return res.status(500).send("Internal Server Error At Backend");
   }
@@ -32,29 +34,29 @@ const emailSignup = async (req, res) => {
 const emailLogin = async (req, res) => {
   try {
     let email = req.body.email;
-    if (email == '') return res.status(400).send({message: "No Email provided"});
-    console.log(email)
+    if (email == "") return res.status(400).send({ message: "No Email provided" });
+    console.log(email);
 
     let user = await userModel.findOne({ email: email });
-    if (!user) return res.status(400).send({message: "Wrong email"})
-    
-    return res.status(200).send(email)
+    if (!user) return res.status(400).send({ message: "Wrong email" });
+
+    return res.status(200).send(email);
   } catch (error) {
     if (error.isJoi === true) return res.status(400).send(error.details[0].message);
     console.log("Error", error.message);
-    return res.status(500).send("Internal Server Error At Backend");
+    return res.status(500).send({message: "Internal Server Error At Backend"});
   }
 };
 
 // REGISTER USER FUNCTION
 const registerUser = async (req, res) => {
   try {
-    let response = null
+    let response = null;
     try {
       // response = await authSchema.validateAsync(req.body);
       response = req.body;
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
     console.log(response);
 
@@ -71,8 +73,7 @@ const registerUser = async (req, res) => {
       message: "registration successfully",
     });
   } catch (error) {
-    if (error.isJoi === true)
-      return res.status(400).send(error.details[0].message);
+    if (error.isJoi === true) return res.status(400).send(error.details[0].message);
     console.log(error.message);
     return res.status(500).send("Internal Server Error At Backend");
   }
@@ -82,22 +83,21 @@ const registerUser = async (req, res) => {
 const signinUser = async (req, res) => {
   try {
     // const response = await loginSchema.validateAsync(req.body);
-    const response = await req.body
+    const response = await req.body;
     console.log(response);
 
     let user = await userModel.findOne({ email: response.email });
+    console.log(user)
 
     const passMatch = await bcrypt.compare(response.password, user.password);
-    if (!passMatch) return res.status(400).send("Password doesn't match");
+    if (!passMatch) return res.status(300).send("Password doesn't match");
 
-    const token = jwt.sign({ id: user._id }, jwt_secret);
-    res
-      .status(200)
-      .send({ user: user, token: token, message: "Login Successfully" });
+    const token = jwt.sign({
+       id: user._id }, jwt_secret);
+    res.status(200).send({ user: user, token: token, message: "Login Successfully" });
   } catch (error) {
-    if (error.isJoi === true)
-      // return res.status(400).send(error.details[0].message);
-    console.log(error.message);
+    if (error.isJoi === true) return res.status(400).send(error.details[0].message);
+      console.log(error.message);
     return res.status(500).send("Internal Server Error, Please Try Again");
   }
 };
@@ -109,8 +109,7 @@ const getAllUsers = async (req, res) => {
     if (!allUsers) return res.status(200).send("No Users");
     return res.status(201).send(allUsers);
   } catch (error) {
-    if (error.isJoi === true)
-      return res.status(400).send(error.details[0].message);
+    if (error.isJoi === true) return res.status(400).send(error.details[0].message);
     console.log(error.message);
     return res.status(500).send("Internal Server Error, Please Try Again");
   }

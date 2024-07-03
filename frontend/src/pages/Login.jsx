@@ -8,20 +8,25 @@ import 'react-toastify/ReactToastify.css'
 import axios from 'axios'
 
 const Login = () => {
-     const [password, setPassword] = useState('')
+     const [password, setPassword] = useState(null)
      const { emailContext } = useContext(UserContext)
+     const [loading, setLoading] = useState(false)
      const navigate = useNavigate()
 
      const hangleLogin = (e) => {
           e.preventDefault()
+          setLoading(true)
           axios.post("http://localhost:5174/login", { email: emailContext, password: password})
           .then(response => {
+               setLoading(false)
                localStorage.setItem("User", JSON.stringify(response.data.user))
                localStorage.setItem("Token", JSON.stringify(response.data.token))
-               console.log(response.data.message)
                toast.success(response.data.message)
+               setTimeout(() => {
+                    location = '/'
+               }, 2000)
           }).catch(error => {
-               console.log(error.response.data)
+               setLoading(false)
                toast.warn(error.response.data)
           })
      }
@@ -42,10 +47,9 @@ const Login = () => {
                <div className={`text-end pt-3`}>
                     <Link to={'/forgot'} className={` w-full text-right`}>Forgot Password</Link>
                </div>
-               <button type='submit' onClick={hangleLogin} className={`rounded-md w-full bg-amber-500 py-1 mt-2 shadow hover:shadow-white outline-none`}>Log in</button>
+               {loading !== true ? <button type='submit' onClick={hangleLogin} className={`rounded-md w-full bg-amber-500 py-1 mt-2 shadow hover:shadow-white outline-none`}>Log in</button> :
+                <button type='disabled' className={`rounded-md w-full bg-gray-500 py-1 mt-2 outline-none`}>Loading...</button>}
           </form>
-          <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true}
-           newestOnTop={true} rtl={false} pauseOnFocusLoss pauseOnHover theme="light" transition: Zoom />
      </motion.div>
   )
 }

@@ -26,7 +26,10 @@ const Signin = () => {
           .then(response => {
                localStorage.setItem("User", JSON.stringify(response.data.user))
                localStorage.setItem("Token", JSON.stringify(response.data.token))
-               navigate('/')
+               toast.success(response.data.message)
+               setTimeout(() => {
+                    window.location = '/' || navigate('/')
+               }, 2000)
           })
           .catch(error => {
                console.log(error.response.data)
@@ -73,8 +76,6 @@ const Signin = () => {
                </div>
                <button type='submit' className={`rounded-md w-full bg-amber-500 py-1 mt-2 shadow hover:shadow-white outline-none`}>Register</button>
           </form>
-          <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true}
-           newestOnTop={true} rtl={false} pauseOnFocusLoss pauseOnHover theme="light" transition: Zoom />
      </motion.div>
   )
 }

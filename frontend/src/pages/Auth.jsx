@@ -22,8 +22,8 @@ const Auth = () => {
   const handleSignupEmail = (e) => {
     e.preventDefault()
     setLoading(true)
-    axios.post("http://localhost:5174/email", { email: email })
-    // axios.post("https://resto-jeremy.vercel.app/email", { email: email })
+    // axios.post("http://localhost:5174/email", { email: email })
+    axios.post("https://resto-jeremy.vercel.app/email", { email: email })
     .then(responseEmail => {
       setLoading(false)
       setEmailContext(responseEmail.data)

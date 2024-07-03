@@ -5,7 +5,7 @@ import Decorations from './components/Decorations'
 import AnimatedRoutes from './components/AnimatedRoutes'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
-import {UserProvider} from './components/UserContext'
+import { UserProvider } from './components/UserContext'
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           </div>
         </Router>
         <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true} newestOnTop={true} rtl={false}
-          pauseOnFocusLoss pauseOnHover theme="light" transition: Zoom />
+          pauseOnFocusLoss pauseOnHover theme="light" transition:Zoom />
       </div>
     </UserProvider>
   )

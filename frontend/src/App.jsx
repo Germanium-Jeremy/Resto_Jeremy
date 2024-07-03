@@ -11,7 +11,7 @@ function App() {
   return (
     <UserProvider>
       <div className='w-full min-h-screen h-full bg-[#eff] pt-[3rem]'>
-        <Decorations />
+        {/* <Decorations /> */}
         <Router>
           <div>
             <Header />

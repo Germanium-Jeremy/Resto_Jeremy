@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
-import { FaBell, FaSignInAlt, FaUserAlt, FaBuffer, FaBars } from 'react-icons/fa'
+import { FaBell, FaSignInAlt, FaUserAlt, FaBuffer, FaBars, FaSearch, FaSadCry } from 'react-icons/fa'
 import Profile from '../assets/react.svg'
 
 const Header = () => {
@@ -60,6 +60,7 @@ const Header = () => {
         </Link>
       </div>) : (
         <div className={`flex gap-[1rem] items-center max-sm:hidden`}>
+          <button className={`text-md`}><FaSearch /></button>
           <button className={`relative`}>
             <span className={`absolute h-3 w-3 rounded-full bg-amber-500 p-1 border border-white -top-2 -right-1`}></span>
             <FaBell />
@@ -70,6 +71,9 @@ const Header = () => {
       )}
 
       <div className={`flex gap-4 md:hidden`}>
+        {user && (
+          <button className={`text-md`}><FaSearch /></button>
+        )}
         {user && (
           <button className={`relative`}>
             <span className={`absolute h-3 w-3 rounded-full bg-amber-500 p-1 border border-white -top-2 -right-1`}></span>

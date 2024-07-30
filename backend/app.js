@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const mangoose = require("mongoose");
+const path = require("path");
 require("dotenv").config();
 
 // MIDDLEWARES CONFIGURATIONS
@@ -21,10 +22,10 @@ const port = process.env.PORT;
 app.use(userRoutes);
 app.use(productRoutes);
 app.use(orderRoutes);
+app.use("./uploads/imgs", express.static(path.join(__dirname, "./uploads/imgs")));
 
 // SIMPLE ROUTES
 app.get("/", (req, res) => res.send("Index Route of German-Resto"));
-app.get("*", (req, res) => res.send("Roure Not Implemented"));
 app.post("/", (req, res) => {
   const name = req.body.name;
   if (!name) return res.status(400).json("No Name.");
@@ -32,6 +33,7 @@ app.post("/", (req, res) => {
   console.log(name);
   res.status(200).json({ name: name });
 });
+app.get("*", (req, res) => res.send("Roure Not Implemented"));
 
 // MONGO CONNECTIONS
 mangoose

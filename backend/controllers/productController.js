@@ -1,5 +1,6 @@
 // REQUIRE PACKAGES
 require("dotenv").config();
+const multer = require('multer')
 
 // REQUIRE PRODUCT IMAGES
 const productModel = require("../models/ProductModel");
@@ -51,5 +52,7 @@ const getCertainProd = async (req, res) => {
           return res.status(400).json("Product Not Got");
         }
 };
+
+
 
 module.exports = { getProducts, getCertainProd, addProduct };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import Hero from '../components/Hero';
 import Promise from '../components/Promise';
 import LandingSlide from '../components/LandingSlide';

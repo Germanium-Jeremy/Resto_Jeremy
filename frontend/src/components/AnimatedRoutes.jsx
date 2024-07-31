@@ -11,6 +11,7 @@ import { AnimatePresence} from 'framer-motion'
 
 const AnimatedRoutes = () => {
      const location = useLocation()
+     // const user = loca
   return (
      <AnimatePresence>
           <Routes location={location} key={location.pathname}>

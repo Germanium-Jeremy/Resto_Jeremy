@@ -49,7 +49,6 @@ const Auth = () => {
       setLoading(false)
       setEmailContext(responseEmail.data)
       setResponseEmail(responseEmail.data)
-      console.log(responseEmail)
       navigate('/login')
     })
     .catch(error => {

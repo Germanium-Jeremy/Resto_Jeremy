@@ -13,11 +13,8 @@ const Signin = () => {
      const [phone, setPhone] = useState(0)
      const [location, setLocation] = useState('')
      const [password, setPassword] = useState('')
-     // const [response, setResponse] = useState(null)
-     // const [error, setError] = useState(null)
      const navigate = useNavigate()
      const { emailContext } = useContext(UserContext);
-     // const { user, setUser } = useContext(UserContext);
 
      const handleSignup = (e) => {
           e.preventDefault()

@@ -6,7 +6,7 @@ export const Footer = () => {
     <footer className='px-2 md:px-5 border border-black text-white bg-black'>
       <div className={`border-b-2 border-white py-2 md:flex md:justify-between md:items-center`}>
         <div>
-          <h2 className={`text-2xl font-bold`}>Logo</h2>
+          <h2 className={`text-2xl font-bold`}>Delight Fast</h2>
           <div className={`flex gap-4 text-xs`}>
             <Link to={'/'} className={`font-semibold`}>Our Story</Link>
             <Link to={'/'} className={`font-semibold`}>Meals</Link>

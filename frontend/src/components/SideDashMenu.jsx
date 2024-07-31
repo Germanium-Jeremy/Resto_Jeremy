@@ -2,7 +2,7 @@ import React from 'react'
 
 const SideDashMenu = () => {
   return (
-    <div>SideDashMenu</div>
+    <div className={`max-sm:hidden`}>SideDashMenu</div>
   )
 }
 

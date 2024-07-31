@@ -13,6 +13,17 @@ const Login = () => {
      const [loading, setLoading] = useState(false)
      const navigate = useNavigate()
 
+     const note = (heading) => {
+          const userId = JSON.parse(localStorage.getItem("User"))._id
+          const message = "You have successfully loged to your account"
+          // axios.post("http://localhost:5174/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: ""}).then(response => {
+          axios.post("https://resto-jeremy.vercel.app/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: ""}).then(response => {
+               console.log(response.data.message)
+          }).catch(error => {
+               console.error(error.message)
+          })
+     }
+
      const hangleLogin = (e) => {
           e.preventDefault()
           setLoading(true)
@@ -23,6 +34,7 @@ const Login = () => {
                localStorage.setItem("User", JSON.stringify(response.data.user))
                localStorage.setItem("Token", JSON.stringify(response.data.token))
                toast.success(response.data.message)
+               note(response.data.message)
                setTimeout(() => {
                     location = '/'
                }, 2000)

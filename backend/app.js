@@ -14,6 +14,7 @@ app.use(cors());
 const userRoutes = require("./routes/userRouter");
 const productRoutes = require("./routes/procuctsRoute");
 const orderRoutes = require("./routes/OrderRoutes");
+const notificationRoutes = require("./routes/notificationRoute")
 
 // DOTENV AND CONFIG VARIABLES READINGS
 const port = process.env.PORT;
@@ -22,7 +23,7 @@ const port = process.env.PORT;
 app.use(userRoutes);
 app.use(productRoutes);
 app.use(orderRoutes);
-app.use("./uploads/imgs", express.static(path.join(__dirname, "./uploads/imgs")));
+app.use(notificationRoutes);
 
 // SIMPLE ROUTES
 app.get("/", (req, res) => res.send("Index Route of German-Resto"));

@@ -6,22 +6,25 @@ import AnimatedRoutes from './components/AnimatedRoutes'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { UserProvider } from './components/UserContext'
+import { NotificationProvider } from './components/contexts/Notifications'
 
 function App() {
   return (
     <UserProvider>
-      <div className='w-full min-h-screen h-full bg-[#eff] pt-[3rem]'>
-        {/* <Decorations /> */}
-        <Router>
-          <div>
-            <Header />
-            <AnimatedRoutes />
-            <Footer />
-          </div>
-        </Router>
-        <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true} newestOnTop={true} rtl={false}
-          pauseOnFocusLoss pauseOnHover theme="light" transition:Zoom />
-      </div>
+      <NotificationProvider>
+        <div className='w-full min-h-screen h-full bg-[#eff] pt-[3rem]'>
+          {/* <Decorations /> */}
+          <Router>
+            <div>
+              <Header />
+              <AnimatedRoutes />
+              <Footer />
+            </div>
+          </Router>
+          <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true} newestOnTop={true} rtl={false}
+            pauseOnFocusLoss pauseOnHover theme="light" transition:Zoom />
+        </div>
+      </NotificationProvider>
     </UserProvider>
   )
 }

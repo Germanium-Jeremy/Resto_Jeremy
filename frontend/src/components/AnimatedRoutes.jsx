@@ -11,7 +11,7 @@ import { AnimatePresence} from 'framer-motion'
 
 const AnimatedRoutes = () => {
      const location = useLocation()
-     // const user = loca
+     const user = JSON.parse(localStorage.getItem("User"))
   return (
      <AnimatePresence>
           <Routes location={location} key={location.pathname}>
@@ -20,7 +20,7 @@ const AnimatedRoutes = () => {
                <Route path='/login' exact element={<Login />} />
                <Route path='/signup' exact element={<Signin />} />
                <Route path='/auth' exact element={<Auth />} />
-               <Route path='/notifications' exact element={<Notifications />} />
+               <Route path='/notifications' exact element={user ? <Notifications /> : <Auth />} />
                <Route path='*' exact element={<Missing />} />
           </Routes>
      </AnimatePresence>

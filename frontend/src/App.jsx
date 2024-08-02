@@ -12,7 +12,7 @@ function App() {
   return (
     <UserProvider>
       <NotificationProvider>
-        <div className='w-full min-h-screen h-full bg-[#eff] pt-[3rem]'>
+        <div className='w-full min-h-screen h-full bg-[#eff] pt-[2rem]'>
           {/* <Decorations /> */}
           <Router>
             <div>

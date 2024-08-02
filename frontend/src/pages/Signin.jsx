@@ -8,13 +8,25 @@ import { ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/ReactToastify.css'
 
 const Signin = () => {
-     const [username, setUsername] = useState('')
+     const [username, setUsername] = useState('User')
      const [dob, setDob] = useState('')
      const [phone, setPhone] = useState(0)
-     const [location, setLocation] = useState('')
+     const [location, setLocation] = useState('Kigali')
      const [password, setPassword] = useState('')
      const navigate = useNavigate()
      const { emailContext } = useContext(UserContext);
+
+     const note = async (heading) => {
+          const userId = JSON.parse(localStorage.getItem("User"))._id
+          const name = JSON.parse(localStorage.getItem("User")).username
+          const message = name + ", Your account was registered successfully"
+          // axios.post("http://localhost:5174/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: ""}).then(response => {
+          axios.post("https://resto-jeremy.vercel.app/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: ""}).then(response => {
+               console.log(response.data.message)
+          }).catch(error => {
+               console.error(error.message)
+          })
+     }
 
      const handleSignup = (e) => {
           e.preventDefault()
@@ -23,6 +35,7 @@ const Signin = () => {
           .then(response => {
                localStorage.setItem("User", JSON.stringify(response.data.user))
                localStorage.setItem("Token", JSON.stringify(response.data.token))
+               note(response.data.message)
                toast.success(response.data.message)
                setTimeout(() => {
                     window.location = '/' || navigate('/')

@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 const CarouselFake = () => {
      const [products, setProducts] = useState([])
+     const [imagesLoading, setImagesLoading] = useState(true)
+     const [imageErrors, setImageError] = useState(false)
      const settings = {
           dots: true,
           infinite: true,
@@ -54,31 +56,43 @@ const CarouselFake = () => {
                },
           },]
      }
+
      useEffect(() => {
-          // axios.get("https://resto-jeremy.vercel.app/localProducts").then(response => {
-          axios.get("http://localhost:5174/localProducts").then(response => {
+          axios.get("https://resto-jeremy.vercel.app/localProducts").then(response => {
+          // axios.get("http://localhost:5174/localProducts").then(response => {
                setProducts(response.data.products)
+               setImagesLoading(false)
           }).catch(error => {
+               setImagesLoading(false)
+               setImageError(true)
                console.error("Error fetching Products: ", error.message)
           })
      }, [])
 
      return (
      <div className={`px-[1rem] py-[1rem] h-full`}>
-          <Slider {...settings}>
-               {products.map((product, index) => {
-                    let numImages = Math.floor(Math.random() * product.images.length)
-                    return (
-                         <div className={`bg-slate-50 rounded-md w-full h-full flex flex-col items-center my-4 hover:transition-shadow`} key={index}>
-                              <img src={`data: image/png;base64, ${product.images[numImages].data}`} alt={product.name[0]} className={`w-full h-[5cm] max-[340px]:h-[4cm]`} />
-                              <div className={`px-[1.5rem] py-[1rem] w-full`}>
-                                   <p className={`font-bold text-center mb-3 text-xl`}>Frw: {product.normalPrice}</p>
-                                   <button className='px-[1rem] py-[.6rem] rounded-lg uppercase bg-amber-600 hover:bg-amber-500 text-white w-full'>Add to Cart</button>
+          {imagesLoading == true ? (
+               <div className={`w-full min-h-[5cm] bg-gray-400 animate-pulse rounded-md`}></div>
+          ) : imageErrors == true ? (
+               <div className={`w-full max-sm:min-h-[4cm] sm:min-h-[5cm] lg:min-h-[6cm] 2xl:min-h-[7cm] bg-gray-400 rounded-md flex items-center justify-center`}>
+                    Images not available!
+               </div>
+          ) : (
+               <Slider {...settings}>
+                    {products.map((product, index) => {
+                         let numImages = Math.floor(Math.random() * product.images.length)
+                         return (
+                              <div className={`bg-slate-50 rounded-md w-full h-full flex flex-col items-center my-4 hover:transition-shadow`} key={index}>
+                                   <img src={`data: image/png;base64, ${product.images[numImages].data}`} alt={product.name[0]} className={`w-full h-[5cm] max-[340px]:h-[4cm]`} loading='lazy' />
+                                   <div className={`px-[1.5rem] py-[1rem] w-full`}>
+                                        <p className={`font-bold text-center mb-3 text-xl`}>Frw: {product.normalPrice}</p>
+                                        <button className='px-[1rem] py-[.6rem] rounded-lg uppercase bg-amber-600 hover:bg-amber-500 text-white w-full'>Add to Cart</button>
+                                   </div>
                               </div>
-                         </div>
-                    )
-               })}
-          </Slider>
+                         )
+                    })}
+               </Slider>
+          )}
      </div>
      )
 }

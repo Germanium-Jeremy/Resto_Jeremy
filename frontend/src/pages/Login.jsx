@@ -13,9 +13,10 @@ const Login = () => {
      const [loading, setLoading] = useState(false)
      const navigate = useNavigate()
 
-     const note = (heading) => {
+     const note = async (heading) => {
           const userId = JSON.parse(localStorage.getItem("User"))._id
-          const message = "You have successfully loged to your account"
+          const name = JSON.parse(localStorage.getItem("User")).username
+          const message = name + ", You have successfully loged to your account"
           // axios.post("http://localhost:5174/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: ""}).then(response => {
           axios.post("https://resto-jeremy.vercel.app/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: ""}).then(response => {
                console.log(response.data.message)

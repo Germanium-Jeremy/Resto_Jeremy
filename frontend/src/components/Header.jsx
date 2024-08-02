@@ -1,33 +1,35 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { FaBell, FaSignInAlt, FaUserAlt, FaBuffer, FaBars, FaSearch, FaSadCry } from 'react-icons/fa'
 import Profile from '../assets/react.svg'
 import Logo from '../assets/logo.png'
 import { NotificationContext } from './contexts/Notifications';
+import CompNotifs from './CompNotifs';
 
 const Header = () => {
   const [menuShow, setMenuShow] = useState(false)
+  const [seeNotifications, setSeeNotifications] = useState(false)
   const setFalse = () => setMenuShow(false)
   const { notificationsContext } = useContext(NotificationContext)
   const changeMenu = () => menuShow == true ? setMenuShow(false) : setMenuShow(true)
   const user = JSON.parse(localStorage.getItem("User"))
 
   return (
-    <nav className='fixed top-0 right-0 left-0 bg-black text-white px-[2rem] max-[450px]:px-3 py-3 flex items-center justify-between z-[5]'>
+    <nav className='fixed top-0 right-0 left-0 bg-black text-white px-[2rem] max-[450px]:px-3 py-1 flex items-center justify-between z-[5]'>
       <Link to={'/'}>
-        <h1 className={`text-2xl font-bold max-sm:hidden`}>DELIGHT<span className={`text-amber-500`}>FAST</span></h1>
+        <h1 className={`text-lg font-bold max-sm:hidden`}>DELIGHT<span className={`text-amber-500`}>FAST</span></h1>
         <span className={`sm:hidden text-3xl font-bold invert`}><img src={Logo} alt="Delight Fast" title='Delight Fast' /></span>
       </Link>
       <div className={`flex gap-5 max-[350px]:gap-3 max-sm:hidden`}>
         <Link to={'/home'} className='flex justify-center items-center hover:text-amber-500'>
-          <span className={`max-sm:hidden`}>Home</span>
+          <span className={`max-sm:hidden text-xs`}>Home</span>
         </Link>
         <Link className='flex justify-center items-center hover:text-amber-500'>
-          <span className={`max-sm:hidden`}>Diet</span>
+          <span className={`max-sm:hidden text-xs`}>Diet</span>
         </Link>
         <Link className='flex justify-center items-center hover:text-amber-500'>
-          <span className={`max-sm:hidden`}>Drinks</span>
+          <span className={`max-sm:hidden text-xs`}>Drinks</span>
         </Link>
       </div>
       {!user ? (<div className={`flex gap-[1rem] max-[350px]:gap-2 max-sm:hidden`}>
@@ -41,17 +43,16 @@ const Header = () => {
         </Link>
       </div>) : (
         <div className={`flex gap-[1rem] items-center max-sm:hidden`}>
-          <button className={`text-md`}><FaSearch /></button>
-          <Link to={'/notifications'} className={`relative`}>
+          <button className={`text-xs`}><FaSearch /></button>
+          <button className={`relative text-xs`} onClick={() => setSeeNotifications(seeNotifications == true ? false : true)}>
           {notificationsContext <= 0 ? null : (
-            <span className={`absolute h-3 w-3 rounded-full bg-amber-500 p-1 border border-white -top-2 -right-1`}>
-              {notificationsContext <= 0 ? null : notificationsContext <= 9 ? notificationsContext : '9+'}
+            <span className={`absolute h-2 w-2 rounded-full bg-amber-500 p-1 border border-white -top-1 -right-1`}>
             </span>
           )}
             <FaBell />
-          </Link>
-          <p className={`max-sm:hidden`}>{user.username}</p>
-          <img src={Profile} alt="Profile" className='rounded-full h-10 w-10 border border-white p-1 max-sm:hidden' />
+          </button>
+          <p className={`max-sm:hidden text-xs`}>{user.username}</p>
+          <img src={Profile} alt="Profile" className='rounded-full h-6 w-6 border border-white p-1 max-sm:hidden' />
         </div>
       )}
 
@@ -62,8 +63,7 @@ const Header = () => {
         {user && (
           <Link to={'/notifications'} className={`relative`}>
             {notificationsContext <= 0 ? null : (
-              <span className={`absolute h-[1rem] w-[1.2rem] rounded-full bg-amber-500 border border-white -top-2 -right-2 text-xs flex items-center justify-center`}>
-                {notificationsContext <= 0 ? null : notificationsContext <= 9 ? notificationsContext : '9+'}
+              <span className={`absolute h-3 w-3 p-1 rounded-full bg-amber-500 border border-white -top-1 -right-1`}>
               </span>
             )}
             <FaBell />
@@ -86,6 +86,7 @@ const Header = () => {
           </div>
         )}
       </nav>
+      {seeNotifications && <CompNotifs />}
     </nav>
   )
 }

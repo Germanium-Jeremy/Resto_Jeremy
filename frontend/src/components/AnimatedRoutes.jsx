@@ -8,10 +8,10 @@ import Notifications from '../pages/Notifications'
 import Home from '../pages/Home'
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence} from 'framer-motion'
-
 const AnimatedRoutes = () => {
      const location = useLocation()
      const user = JSON.parse(localStorage.getItem("User"))
+
   return (
      <AnimatePresence>
           <Routes location={location} key={location.pathname}>

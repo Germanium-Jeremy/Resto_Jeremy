@@ -6,8 +6,17 @@ const multer = require('multer')
 const productModel = require("../models/ProductModel");
 
 const getProducts = async (req, res) => {
+     function shuffle(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [array[i], array[j]] = [array[j], array[i]];
+          }
+          return array;
+     }
+      
      let response = await productModel.find()
      if (!response || response === null) return res.status(400).send("No Product");
+     shuffle(response);
      res.status(200).send(response);
 };
 

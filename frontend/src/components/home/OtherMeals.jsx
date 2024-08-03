@@ -1,22 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useEffect, useState, useContext } from 'react'
+import { ProductContext } from '../contexts/ProductsContext';
 
 const OtherMeals = () => {
-
-     const [products, setProducts] = useState([])
-     const [imagesLoading, setImagesLoading] = useState(true)
-     const [imageErrors, setImageError] = useState(false)
-     useEffect(() => {
-          axios.get("https://resto-jeremy.vercel.app/localProducts").then(response => {
-          // axios.get("http://localhost:5174/localProducts").then(response => {
-               setProducts(response.data.products)
-               setImagesLoading(false)
-          }).catch(error => {
-               setImagesLoading(false)
-               setImageError(true)
-               console.error("Error fetching Products: ", error.message)
-          })
-     }, [])
+     const { productsContext, imagesLoading, imageErrors } = useContext(ProductContext)
 
      return (
           <div className={`px-[1rem] py-[1rem] mb-[2rem]`}>
@@ -29,10 +15,10 @@ const OtherMeals = () => {
                </div>
           ) : (
                <div className={`grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3`}>
-                    {products.map((product, index) => {
+                    {productsContext.map((product, index) => {
                          let numImages = Math.floor(Math.random() * product.images.length)
                          return (
-                              <div className={`w-full h-[4cm] rounded-xl bg-slate-50`}>
+                              <div className={`w-full h-[4cm] rounded-xl bg-slate-50`} key={index}>
                                    <img src={`data: image/png;base64, ${product.images[numImages].data}`} alt="" className={`w-full h-3/5`} />
                                    <div className={`flex max-[340px]:flex-col justify-between items-center w-full px-[.3rem]`}>
                                         <p>Frw: {product.normalPrice}</p>

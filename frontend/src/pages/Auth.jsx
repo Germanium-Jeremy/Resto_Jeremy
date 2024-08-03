@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaGoogle } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import Image1 from '../assets/Potage.webp'
-import { UserContext } from '../components/UserContext'
+import { UserContext } from '../components/contexts/UserContext'
 import { toast } from 'react-toastify'
 import 'react-toastify/ReactToastify.css'
 
@@ -22,8 +22,8 @@ const Auth = () => {
   const handleSignupEmail = (e) => {
     e.preventDefault()
     setLoading(true)
-    // axios.post("http://localhost:5174/email", { email: email })
-    axios.post("https://resto-jeremy.vercel.app/email", { email: email })
+    axios.post("http://localhost:5174/email", { email: email })
+    // axios.post("https://resto-jeremy.vercel.app/email", { email: email })
     .then(responseEmail => {
       setLoading(false)
       setEmailContext(responseEmail.data)
@@ -43,8 +43,8 @@ const Auth = () => {
   const handleLoginEmail = (e) => {
     e.preventDefault()
     setLoading(true)
-    // axios.post("http://localhost:5174/emailLogin", { email: emailLogin })
-    axios.post("https://resto-jeremy.vercel.app/emailLogin", { email: emailLogin })
+    axios.post("http://localhost:5174/emailLogin", { email: emailLogin })
+    // axios.post("https://resto-jeremy.vercel.app/emailLogin", { email: emailLogin })
     .then(responseEmail => {
       setLoading(false)
       setEmailContext(responseEmail.data)

@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { FaBell, FaSignInAlt, FaUserAlt, FaBuffer, FaBars, FaSearch, FaSadCry } from 'react-icons/fa'
 import Profile from '../assets/react.svg'

@@ -7,6 +7,7 @@ const NotificationSchema = new mongoose.Schema(
      heading: { type: String, required: true },
      message: { type: String, required: true },
      longMessage: { type: String, required: false },
+     dateOfMake: { type: String, default: ''},
   }, { timestamps: true }
 );
 

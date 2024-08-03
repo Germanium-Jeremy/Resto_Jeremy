@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Logo from '../assets/logo.png'
 import { NotificationContext } from '../components/contexts/Notifications'
@@ -9,18 +9,16 @@ const Notifications = () => {
   const navigate = useNavigate()
 
   return (
-    <div className={`py-3 px-[1rem] md:${navigate('/')} flex gap-[2rem] max-w-[760px] bg-gray-50`}>
+    <div className={`py-3 px-[1rem] flex gap-[2rem] max-w-[760px]`}>
       <section className={`w-full`}>
         {noteLength > 0 ? notificationsContext.map((notification, index) => {
-          const dateNote = notification.createdAt
-          const nowDate = Date()
           return (
-            <button className={`flex gap-3 bg-slate-200 hover:bg-slate-50 rounded-lg w-full px-2 py-2 my-3 items-center`} key={index}>
-              <img src={Logo} alt="Image" className={`w-6 h-8 rounded-full`} />
-              <div className={`flex flex-col text-left`}>
-                <h2 className={`font-semibold text-lg`}>{notification.heading}</h2>
+            <button className={`flex gap-3 bg-slate-200 hover:bg-slate-50 rounded-lg w-full px-1 py-1 my-2 items-center`} key={index}>
+              <img src={Logo} alt="Image" className={`w-5 h-6 rounded-full`} />
+              <div className={`flex flex-col text-left w-full`}>
+                <h2 className={`font-semibold text-sm`}>{notification.heading}</h2>
                 <p className={`font-light text-xs`}>{notification.message}</p>
-                <span className={`text-gray-800 text-xs text-center font-bold`}>{dateNote}</span>
+                <span className={`text-gray-800 text-[12px] text-right font-bold`}>{notification.dateOfMake}</span>
               </div>
             </button>
           )

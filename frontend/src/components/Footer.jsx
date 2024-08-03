@@ -1,7 +1,7 @@
 import React, { useState, useContext }  from 'react'
 import axios from 'axios'
 import { Link , useNavigate} from 'react-router-dom'
-import { UserContext } from '../components/UserContext'
+import { UserContext } from './contexts/UserContext'
 import { toast } from 'react-toastify'
 import 'react-toastify/ReactToastify.css'
 

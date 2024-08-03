@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Image1 from '../assets/Potage.webp'
-import { UserContext } from '../components/UserContext'
-import { ToastContainer, toast } from 'react-toastify'
+import { UserContext } from '../components/contexts/UserContext'
+import { toast } from 'react-toastify'
 import 'react-toastify/ReactToastify.css'
 import axios from 'axios'
 
@@ -17,8 +17,8 @@ const Login = () => {
           const userId = JSON.parse(localStorage.getItem("User"))._id
           const name = JSON.parse(localStorage.getItem("User")).username
           const message = name + ", You have successfully loged to your account"
-          // axios.post("http://localhost:5174/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: ""}).then(response => {
-          axios.post("https://resto-jeremy.vercel.app/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: ""}).then(response => {
+          axios.post("http://localhost:5174/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: "", dateOfMake: ''}).then(response => {
+          // axios.post("https://resto-jeremy.vercel.app/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: ""}).then(response => {
                console.log(response.data.message)
           }).catch(error => {
                console.error(error.message)
@@ -28,8 +28,8 @@ const Login = () => {
      const hangleLogin = (e) => {
           e.preventDefault()
           setLoading(true)
-          // axios.post("http://localhost:5174/login", { email: emailContext, password: password})
-          axios.post("https://resto-jeremy.vercel.app/login", { email: emailContext, password: password})
+          axios.post("http://localhost:5174/login", { email: emailContext, password: password})
+          // axios.post("https://resto-jeremy.vercel.app/login", { email: emailContext, password: password})
           .then(response => {
                setLoading(false)
                localStorage.setItem("User", JSON.stringify(response.data.user))

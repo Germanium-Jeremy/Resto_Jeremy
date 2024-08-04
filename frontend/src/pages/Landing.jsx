@@ -2,6 +2,7 @@ import React from 'react';
 import Hero from '../components/Hero';
 import Promise from '../components/Promise';
 import LandingSlide from '../components/LandingSlide';
+// import 
 import Awards from '../components/Awards';
 import ReachUs from '../components/ReachUs';
 import { motion } from 'framer-motion';

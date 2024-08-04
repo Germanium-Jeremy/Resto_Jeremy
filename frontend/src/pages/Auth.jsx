@@ -22,8 +22,8 @@ const Auth = () => {
   const handleSignupEmail = (e) => {
     e.preventDefault()
     setLoading(true)
-    axios.post("http://localhost:5174/email", { email: email })
-    // axios.post("https://resto-jeremy.vercel.app/email", { email: email })
+    // axios.post("http://localhost:5174/email", { email: email })
+    axios.post("https://resto-jeremy.vercel.app/email", { email: email })
     .then(responseEmail => {
       setLoading(false)
       setEmailContext(responseEmail.data)
@@ -43,8 +43,8 @@ const Auth = () => {
   const handleLoginEmail = (e) => {
     e.preventDefault()
     setLoading(true)
-    axios.post("http://localhost:5174/emailLogin", { email: emailLogin })
-    // axios.post("https://resto-jeremy.vercel.app/emailLogin", { email: emailLogin })
+    // axios.post("http://localhost:5174/emailLogin", { email: emailLogin })
+    axios.post("https://resto-jeremy.vercel.app/emailLogin", { email: emailLogin })
     .then(responseEmail => {
       setLoading(false)
       setEmailContext(responseEmail.data)

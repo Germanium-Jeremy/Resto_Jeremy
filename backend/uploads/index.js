@@ -38,6 +38,7 @@ const localProducts = async (req, res) => {
           const productWithImages = {
               id: product.id,
               name: product.name,
+              keywords: product.keywords,
               normalPrice: product.normalPrice,
               discount: product.discount,
               images: []

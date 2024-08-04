@@ -9,8 +9,8 @@ export const ProductsProvider = ({ children }) => {
      const [imageErrors, setImageError] = useState(false)
 
      useEffect(() => {
-          axios.get("http://localhost:5174/localProducts").then(response => {
-          // axios.get("https://resto-jeremy.vercel.app/localProducts").then(response => {
+          // axios.get("http://localhost:5174/localProducts").then(response => {
+          axios.get("https://resto-jeremy.vercel.app/localProducts").then(response => {
                setProductContext(response.data.products)
                setImagesLoading(false)
           }).catch(error => {
@@ -19,7 +19,6 @@ export const ProductsProvider = ({ children }) => {
                console.log(error.message)
           })
         }, [])
-
      return (
           <ProductContext.Provider value={{ productsContext, setProductContext, imagesLoading, imageErrors }}>
                {children}

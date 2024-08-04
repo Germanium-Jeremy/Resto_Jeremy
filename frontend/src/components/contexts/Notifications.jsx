@@ -11,8 +11,8 @@ export const NotificationProvider = ({ children }) => {
      userId == null ? "good" : userId = userId._id
 
      useEffect(() => {
-          axios.post("http://localhost:5174/notifications", { userId: userId}).then(response => {
-          // axios.post("https://resto-jeremy.vercel.app/notifications", { userId: userId}).then(response => {
+          // axios.post("http://localhost:5174/notifications", { userId: userId}).then(response => {
+          axios.post("https://resto-jeremy.vercel.app/notifications", { userId: userId}).then(response => {
             setNotificationsContext(response.data)
             setNoteLength(response.data.length)
           }).catch(error => {

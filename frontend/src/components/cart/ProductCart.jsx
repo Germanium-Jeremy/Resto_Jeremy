@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 const ProductCart = ({ products, setViewCart, viewCart }) => {
      var user = JSON.parse(localStorage.getItem("User"))
      const navigate = useNavigate()
+     const [loading, setLoading] = useState(false)
 
      const note = async (heading) => {
           const userId = JSON.parse(localStorage.getItem("User"))._id
@@ -29,7 +30,7 @@ const ProductCart = ({ products, setViewCart, viewCart }) => {
 
      const makeOrder = (e) => {
           e.preventDefault()
-
+          setLoading(true)
           if (user == null || user == undefined) {
                toast.warn("Please, Login First")
                setViewCart(false)
@@ -45,10 +46,11 @@ const ProductCart = ({ products, setViewCart, viewCart }) => {
 
           // axios.post("http://localhost:5174/orderProduct", { productsId: productsIds, userId: user._id, quantity: products.length }).then(response => {
           axios.post("https://resto-jeremy.vercel.app/orderProduct", { productsId: productsIds, userId: user._id, quantity: products.length }).then(response => {
-               console.log(response.data)
+               setLoading(false)
                note(response.data.message)
+               toast.success(response.data.message)
           }).catch(error => {
-               console.error(error)
+               setLoading(false)
                toast.warn(error.response.data)
           })
      }
@@ -62,7 +64,7 @@ const ProductCart = ({ products, setViewCart, viewCart }) => {
                })}
           </div>
           <form className={`px-2`} onSubmit={makeOrder}>
-               <button type='submit' className={`w-full rounded-md bg-[#502]`}>Buy</button>
+               <button type={`${loading == true ? "disabled" : "submit"}`} className={`w-full rounded-md ${loading == true ? "bg-gray-800" : "bg-[#502]"}`}>Buy</button>
           </form>
      </div>
   )

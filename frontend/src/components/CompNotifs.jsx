@@ -7,7 +7,7 @@ const CompNotifs = () => {
      const { noteLength } = useContext(NotificationContext)
 
   return (
-     <div className={`py-2 px-[.8rem] flex gap-[2rem] max-w-[560px] bg-black fixed bottom-0 right-0 rounded-lg shadow-lg max-h-[80%] overflow-y-auto transition-all`}>
+     <div className={`py-2 px-[.8rem] flex gap-[2rem] max-w-[560px] bg-black fixed bottom-0 right-0 rounded-lg shadow-lg max-h-[70%] overflow-y-auto transition-all`}>
           <section className={`w-full`}>
                {noteLength > 0 ? notificationsContext.map((notification, index) => {
                     return (

@@ -7,12 +7,15 @@ import Logo from '../assets/logo.png'
 import { NotificationContext } from './contexts/Notifications';
 import CompNotifs from './CompNotifs';
 import Container from './search/Container';
+import Cart from './cart/Cart';
+import { OrderContext } from './contexts/OrderContext';
 
 const Header = () => {
   const [menuShow, setMenuShow] = useState(false)
   const [seeNotifications, setSeeNotifications] = useState(false)
   const setFalse = () => setMenuShow(false)
   const { notificationsContext } = useContext(NotificationContext)
+  const { productsCount } = useContext(OrderContext)
   const changeMenu = () => menuShow == true ? setMenuShow(false) : setMenuShow(true)
   const user = JSON.parse(localStorage.getItem("User"))
   const [searchShow, setSearchShow] = useState(false)
@@ -51,7 +54,7 @@ const Header = () => {
         </Link>
       </div>) : (
         <div className={`flex gap-[1rem] items-center max-sm:hidden`}>
-          <button className={`text-xs`}><FaSearch /></button>
+          <button className={`text-xs`} onClick={() =>setSearchShow(true)}><FaSearch /></button>
           <button className={`relative text-xs`} onClick={() => setSeeNotifications(seeNotifications == true ? false : true)}>
           {notificationsContext <= 0 ? null : (
             <span className={`absolute h-2 w-2 rounded-full bg-amber-500 p-1 border border-white -top-1 -right-1`}>
@@ -95,6 +98,7 @@ const Header = () => {
         )}
       </nav>
       {seeNotifications && <CompNotifs />}
+      {productsCount <= 0 ? null : <Cart />}
     </nav>
   )
 }

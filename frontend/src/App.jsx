@@ -8,24 +8,27 @@ import { ToastContainer } from 'react-toastify'
 import { UserProvider } from './components/contexts/UserContext'
 import { NotificationProvider } from './components/contexts/Notifications'
 import { ProductsProvider } from './components/contexts/ProductsContext'
+import { OrderProvider } from './components/contexts/OrderContext'
 
 function App() {
   return (
     <UserProvider>
       <NotificationProvider>
         <ProductsProvider>
-          <div className='w-full min-h-screen h-full bg-[#eff] pt-[2rem]'>
-            {/* <Decorations /> */}
-            <Router>
-              <div>
-                <Header />
-                <AnimatedRoutes />
-                <Footer />
-              </div>
-            </Router>
-            <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true} newestOnTop={true} rtl={false}
-              pauseOnFocusLoss pauseOnHover theme="light" transition:Zoom />
-          </div>
+          <OrderProvider>
+            <div className='w-full min-h-screen h-full bg-[#eff] pt-[2rem]'>
+              {/* <Decorations /> */}
+              <Router>
+                <div>
+                  <Header />
+                  <AnimatedRoutes />
+                  <Footer />
+                </div>
+              </Router>
+              <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true} newestOnTop={true} rtl={false}
+                pauseOnFocusLoss pauseOnHover theme="light" transition:Zoom />
+            </div>
+          </OrderProvider>
         </ProductsProvider>
       </NotificationProvider>
     </UserProvider>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { ProductContext } from '../contexts/ProductsContext';
+import { OrderContext } from '../contexts/OrderContext';
 
 const OtherMeals = () => {
      const { productsContext, imagesLoading, imageErrors } = useContext(ProductContext)
+     const { setCurrentOrder } = useContext(OrderContext)
 
      return (
           <div className={`px-[1rem] py-[1rem] mb-[2rem]`}>
@@ -22,7 +24,7 @@ const OtherMeals = () => {
                                    <img src={`data: image/png;base64, ${product.images[numImages].data}`} alt="" className={`w-full h-3/5`} />
                                    <div className={`flex max-[340px]:flex-col justify-between items-center w-full px-[.3rem]`}>
                                         <p>Frw: {product.normalPrice}</p>
-                                        <button className={`bg-amber-600 hover:bg-amber-500 text-white p-[.2rem] px-[.7rem] text-xl font-bold rounded-full max-[340px]:w-full max-[340px]:rounded-lg max-[340px]:p-0`}>+</button>
+                                        <button className={`bg-amber-600 hover:bg-amber-500 text-white p-[.2rem] px-[.7rem] text-xl font-bold rounded-full max-[340px]:w-full max-[340px]:rounded-lg max-[340px]:p-0`} onClick={() => setCurrentOrder(product)}>+</button>
                                    </div>
                               </div>
                          )

@@ -1,10 +1,12 @@
 import React from 'react'
 import Image from '../assets/Potage.webp'
+import Image1 from '../assets/goat.jpg'
+import Image2 from '../assets/koreanBread1.jpg'
 
 const items = [
      {
           id: 1,
-          image: Image,
+          image: Image1,
           title: "Title",
           desc: "prompt"
      },
@@ -16,7 +18,7 @@ const items = [
      },
      {
           id: 3,
-          image: Image,
+          image: Image2,
           title: "Title",
           desc: "prompt"
      },

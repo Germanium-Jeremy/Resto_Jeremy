@@ -7,6 +7,7 @@ export const NotificationProvider = ({ children }) => {
      const [notificationsContext, setNotificationsContext] = useState(null);
      const [noteLength, setNoteLength] = useState(0);
      const [noteSeen, setNoteSeen] = useState(false)
+     const [noteSeenList, setNoteSeenList] = useState([])
      let userId = JSON.parse(localStorage.getItem("User"))
      userId == null ? "good" : userId = userId._id
 

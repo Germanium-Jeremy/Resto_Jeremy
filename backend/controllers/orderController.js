@@ -16,12 +16,13 @@ const orderProduct = async (req, res) => {
      try {
           const reqOrder = req.body;
           if (!reqOrder) return res.status(400).send("No Order Details");
+          if (!reqOrder.userId) res.status(401).send("You are not logged In")
      
           const newOrder = new OrderModel(reqOrder);
           const savedOrder = await newOrder.save();
      
           console.log(savedOrder)
-          return res.status(200).send(savedOrder);
+          return res.status(200).send({savedOrder, message: "Order Successful."});
      } catch (error) {
           console.error("Error Making Order:", error);
           return res.status(500).send("Internal Server Error");

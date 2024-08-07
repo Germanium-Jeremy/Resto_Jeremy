@@ -38,9 +38,9 @@ const Container = ({ setSearchShow }) => {
   return (
      <div className={`flex flex-col items-center justify-center px-[1rem] py-[2rem] w-full`}>
           <button className={`fixed top-4 right-4 rounded-full bg-white text-gray-950 text-xl z-[1]`} onClick={() => setSearchShow(false)}><AiFillCloseCircle /></button>
-          <form className={`text-black w-full sticky top-0 bg-blue-50 p-1`} onSubmit={handleSubmit}>
-               <label htmlFor="search">Search Here...</label>
-               <input type="search" id='search' className={`outline-none border text-xs border-black rounded-md p-2 indent-3 capitalise w-full`} placeholder='Search'
+          <form className={`text-black w-full sticky top-0 bg-blue-50 p-1 flex flex-col items-center`} onSubmit={handleSubmit}>
+               <label htmlFor="search" className='block'>Search Here...</label>
+               <input type="search" id='search' className={`outline-none border text-xs border-black rounded-md p-2 indent-3 capitalize w-full lg:w-4/5`} placeholder='search'
                     onChange={filterProducts} value={searchQuery} />
           </form>
           {typed && (
@@ -48,7 +48,7 @@ const Container = ({ setSearchShow }) => {
                     {products.length === 0 ? (
                          <p className={`text-black text-sm text-center p-1 my-3`}><span className={`font-bold text-md`}>No products match your search</span> : {truncateText(searchQuery, 20)}</p>
                     ) : (
-                         <div className={`grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3`}>
+                         <div className={`grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3 w-full`}>
                               {products.map((product, index) => <Placeholder product={product} key={index} />)}
                          </div>
                     )}

@@ -22,6 +22,10 @@
      filter: blur(20%);
 }
 
+.bg-gradient {
+     background: linear-gradient(to left, rgb(245, 158, 11), rgb(245, 158, 120), rgb(245, 158, 11));
+}
+
 .slick-slide > div {
      margin: 0 10px;
 }

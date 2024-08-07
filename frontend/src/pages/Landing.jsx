@@ -24,7 +24,7 @@ const Landing = () => {
         initial={{width: 0}} whileInView={{width: window.innerWidth}} exit={{x: window.innerWidth}} transition={{duration: 0.2, delay: 0.2}}>
         <Awards />
       </motion.div>
-      <motion.div className={`mx-[1rem] md:mx-[3rem] my-20 flex items-center justify-center md:gap-[2rem] md:border md:border-black`}
+      <motion.div className={`mx-[1rem] md:mx-[3rem] lg:hidden my-20 flex items-center justify-center md:gap-[2rem] md:border md:border-black`}
         initial={{top: "100%", opacity: 0}} whileInView={{top: 0, opacity: 1}} exit={{top: "-100%", opacity: 0}} transition={{duration: 0.2, delay: 0.2}}>
         <ReachUs />
       </motion.div>

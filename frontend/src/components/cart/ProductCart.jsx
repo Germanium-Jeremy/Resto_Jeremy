@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import Product from './Product'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { NotificationContext } from '../contexts/Notifications'
 
 const ProductCart = ({ products, setViewCart, viewCart }) => {
+     const { setNewNote } = useContext(NotificationContext)
      var user = JSON.parse(localStorage.getItem("User"))
      const navigate = useNavigate()
      const [loading, setLoading] = useState(false)
@@ -22,7 +24,7 @@ const ProductCart = ({ products, setViewCart, viewCart }) => {
 
           // axios.post("http://localhost:5174/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: "", dateOfMake: ''}).then(response => {
           axios.post("https://resto-jeremy.vercel.app/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: "", dateOfMake: ''}).then(response => {
-               console.log(response.data.message)
+               setNewNote(true)
           }).catch(error => {
                console.error(error.message)
           })
@@ -49,6 +51,7 @@ const ProductCart = ({ products, setViewCart, viewCart }) => {
                setLoading(false)
                note(response.data.message)
                toast.success(response.data.message)
+               setNewNote(false)
           }).catch(error => {
                setLoading(false)
                toast.warn(error.response.data)

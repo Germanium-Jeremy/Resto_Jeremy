@@ -32,7 +32,6 @@ const Container = ({ setSearchShow }) => {
                )
           )
           setProducts(filteredProducts);
-          console.log(products)
      }
 
   return (

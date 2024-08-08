@@ -6,6 +6,7 @@ import Missing from '../pages/Missing'
 import Signin from '../pages/Signin'
 import Notifications from '../pages/Notifications'
 import Home from '../pages/Home'
+import Diet from '../pages/Diet'
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence} from 'framer-motion'
 const AnimatedRoutes = () => {
@@ -17,6 +18,7 @@ const AnimatedRoutes = () => {
           <Routes location={location} key={location.pathname}>
                <Route path='/' exact element={<Landing />} />
                <Route path='/home' exact element={<Home />} />
+               <Route path='/diet' exact element={<Diet />} />
                <Route path='/login' exact element={<Login />} />
                <Route path='/signup' exact element={<Signin />} />
                <Route path='/auth' exact element={<Auth />} />

@@ -2,9 +2,9 @@ import React from 'react';
 import Hero from '../components/Hero';
 import Promise from '../components/Promise';
 import LandingSlide from '../components/LandingSlide';
-// import 
 import Awards from '../components/Awards';
 import ReachUs from '../components/ReachUs';
+import Comments from '../components/Comments';
 import { motion } from 'framer-motion';
 
 const Landing = () => {
@@ -23,6 +23,10 @@ const Landing = () => {
       <motion.div className={`px-[1rem] md:px-[3rem] my-6 md:flex gap-5 md:items-center mb-6 overflow-hidden`}
         initial={{width: 0}} whileInView={{width: window.innerWidth}} exit={{x: window.innerWidth}} transition={{duration: 0.2, delay: 0.2}}>
         <Awards />
+      </motion.div>
+      <motion.div className={`w-full px-3`}
+       initial={{top: "100%", opacity: 0}} whileInView={{top: 0, opacity: 1}} exit={{top: "-100%", opacity: 0}} transition={{duration: 0.2, delay: 0.2}}>
+        <Comments />
       </motion.div>
       <motion.div className={`mx-[1rem] md:mx-[3rem] lg:hidden my-20 flex items-center justify-center md:gap-[2rem] md:border md:border-black`}
         initial={{top: "100%", opacity: 0}} whileInView={{top: 0, opacity: 1}} exit={{top: "-100%", opacity: 0}} transition={{duration: 0.2, delay: 0.2}}>

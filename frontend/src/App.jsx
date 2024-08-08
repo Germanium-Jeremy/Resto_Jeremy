@@ -9,6 +9,7 @@ import { UserProvider } from './components/contexts/UserContext'
 import { NotificationProvider } from './components/contexts/Notifications'
 import { ProductsProvider } from './components/contexts/ProductsContext'
 import { OrderProvider } from './components/contexts/OrderContext'
+import { ReviewProvider } from './components/contexts/ReviewContext'
 
 function App() {
   return (
@@ -16,18 +17,20 @@ function App() {
       <NotificationProvider>
         <ProductsProvider>
           <OrderProvider>
-            <div className='w-full min-h-screen h-full bg-[#eff] pt-[2rem]'>
-              {/* <Decorations /> */}
-              <Router>
-                <div>
-                  <Header />
-                  <AnimatedRoutes />
-                  <Footer />
-                </div>
-              </Router>
-              <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true} newestOnTop={true} rtl={false}
-                pauseOnFocusLoss pauseOnHover theme="light" transition:Zoom />
-            </div>
+            <ReviewProvider>
+              <div className='w-full min-h-screen h-full bg-[#eff] pt-[2rem]'>
+                {/* <Decorations /> */}
+                <Router>
+                  <div>
+                    <Header />
+                    <AnimatedRoutes />
+                    <Footer />
+                  </div>
+                </Router>
+                <ToastContainer position="top-center" autoClose={4000} limit={4} hideProgressBar={true} newestOnTop={true} rtl={false}
+                  pauseOnFocusLoss pauseOnHover theme="light" transition:Zoom />
+              </div>
+            </ReviewProvider>
           </OrderProvider>
         </ProductsProvider>
       </NotificationProvider>

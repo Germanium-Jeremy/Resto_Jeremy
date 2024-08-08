@@ -15,6 +15,7 @@ const userRoutes = require("./routes/userRouter");
 const productRoutes = require("./routes/procuctsRoute");
 const orderRoutes = require("./routes/OrderRoutes");
 const notificationRoutes = require("./routes/notificationRoute")
+const commentsRoutes = require("./routes/commentRoutes")
 
 // DOTENV AND CONFIG VARIABLES READINGS
 const port = process.env.PORT;
@@ -24,6 +25,7 @@ app.use(userRoutes);
 app.use(productRoutes);
 app.use(orderRoutes);
 app.use(notificationRoutes);
+app.use(commentsRoutes);
 
 // SIMPLE ROUTES
 app.get("/", (req, res) => res.send("Index Route of German-Resto"));
@@ -35,6 +37,7 @@ app.post("/", (req, res) => {
   res.status(200).json({ name: name });
 });
 app.get("*", (req, res) => res.send("Roure Not Implemented"));
+app.post("*", (req, res) => res.send("Roure Not Implemented"));
 
 // MONGO CONNECTIONS
 mangoose

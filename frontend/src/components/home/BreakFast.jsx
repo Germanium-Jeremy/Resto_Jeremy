@@ -7,7 +7,7 @@ const BreakFast = () => {
      const { setCurrentOrder } = useContext(OrderContext)
 
      return (
-          <div className={`px-[1rem] py-[1rem] my-[2rem]`}>
+          <>
                <h1 className={`text-xl md:text-2xl text-center font-bold mb-[1rem]`}>You can find your BreakFast here.</h1>
                {imagesLoading == true ? (
                     <div className={`w-full min-h-[5cm] bg-gray-400 animate-pulse rounded-md`}></div>
@@ -23,7 +23,7 @@ const BreakFast = () => {
                                    <div className={`w-full h-[4cm] rounded-xl bg-slate-50`} key={index}>
                                         <img src={`data: image/png;base64, ${product.images[numImages].data}`} alt="" className={`w-full h-3/5`} loading='lazy' />
                                         <div className={`flex max-[340px]:flex-col justify-between items-center w-full px-[.3rem]`}>
-                                             <p>Frw: {product.normalPrice}</p>
+                                             <p className={`md:text-sm`}>Frw: {product.normalPrice}</p>
                                              <button className={`bg-amber-600 hover:bg-amber-500 text-white p-[.2rem] px-[.7rem] text-xl font-bold rounded-full max-[340px]:w-full max-[340px]:rounded-lg max-[340px]:p-0`} 
                                              onClick={() => setCurrentOrder(product)}>+</button>
                                         </div>
@@ -32,7 +32,7 @@ const BreakFast = () => {
                          })}
                     </div>
                )}
-          </div>
+          </>
      )
 }
 

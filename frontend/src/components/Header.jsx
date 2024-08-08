@@ -36,10 +36,10 @@ const Header = () => {
         <Link to={'/home'} className='flex justify-center items-center hover:text-amber-500'>
           <span className={`max-sm:hidden text-xs`}>Home</span>
         </Link>
-        <Link className='flex justify-center items-center hover:text-amber-500'>
+        <Link to={'/diet'} className='flex justify-center items-center hover:text-amber-500'>
           <span className={`max-sm:hidden text-xs`}>Diet</span>
         </Link>
-        <Link className='flex justify-center items-center hover:text-amber-500'>
+        <Link to={'/drinks'} className='flex justify-center items-center hover:text-amber-500'>
           <span className={`max-sm:hidden text-xs`}>Drinks</span>
         </Link>
       </div>
@@ -85,8 +85,8 @@ const Header = () => {
       <nav className={`fixed top-0 bottom-0 left-0 w-1/2 max-sm:w-3/4 md:hidden bg-black p-5 flex flex-col z-[2] ${menuShow == true ? "left-0 transition-all" : "left-[-100%] transition-all"}`}>
         <div className={`flex flex-col gap-2`}>
           <Link to={'/home'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Home</Link>
-          <Link to={'/'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Meals</Link>
-          <Link to={'/'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Drinks</Link>
+          <Link to={'/diet'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Meals</Link>
+          <Link to={'/drinks'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Drinks</Link>
           {user && <Link to={'/'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Account</Link>}
           {user && <Link to={'/'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Settings</Link>}
         </div>

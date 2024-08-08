@@ -21,7 +21,6 @@ const orderProduct = async (req, res) => {
           const newOrder = new OrderModel(reqOrder);
           const savedOrder = await newOrder.save();
      
-          console.log(savedOrder)
           return res.status(200).send({savedOrder, message: "Order Successful."});
      } catch (error) {
           console.error("Error Making Order:", error);

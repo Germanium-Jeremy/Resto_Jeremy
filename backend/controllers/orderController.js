@@ -14,18 +14,16 @@ const getOrders = async (req, res) => {
 };
 
 const arrangeOrders = async (productsIds) => {
-     let orders = [];
-     for (let i = 0; i < productsIds.length; i++) {
-          let product = await ProductModel.findOne({ _id: productsIds[i].id });
-          console.log("Prod Id: ", productsIds[i].id)
-          if (product) {
-               orders.push(product);
-          } else {
-               console.log("Products Missed")
-          }
+     const ids = productsIds.map(product => product.id);
+ 
+     const products = await ProductModel.find({ _id: { $in: ids } });
+ 
+     if (products.length === 0) {
+         console.log("Products Missed");
      }
-     return orders;
-}
+ 
+     return products;
+ }
 
 const orderProduct = async (req, res) => {
      try {

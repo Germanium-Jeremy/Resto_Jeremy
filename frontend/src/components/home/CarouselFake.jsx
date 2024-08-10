@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const CarouselFake = () => {
-     const { productsContext, imagesLoading } = useContext(ProductContext)
+     const { productsContext, imagesLoading, imageErrors } = useContext(ProductContext)
      const { setCurrentOrder } = useContext(OrderContext)
      const settings = {
           dots: true, infinite: true, speed: 400, autoplay: true, autoplaySpeed: 3000, slidesToScroll: 1,
@@ -32,6 +32,10 @@ const CarouselFake = () => {
      <div className={`px-[1.3rem] py-[1rem] h-full w-full`}>
           {imagesLoading == true ? (
                <div className={`w-full min-h-[5cm] bg-gray-500 animate-pulse rounded-md`}></div>
+          ): imageErrors ? (
+               <div className={`w-full max-sm:min-h-[4cm] sm:min-h-[5cm] lg:min-h-[6cm] 2xl:min-h-[7cm] bg-gray-400 rounded-md flex items-center justify-center`}>
+                    Images not available!
+               </div>
           ) : (
                <Slider {...settings}>
                     {productsContext.map((product, index) => {

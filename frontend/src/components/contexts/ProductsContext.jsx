@@ -16,9 +16,12 @@ export const ProductsProvider = ({ children }) => {
                setProductContext(response.data.products)
                setImagesLoading(false)
                setProductsLength(response.data.products.length)
+               setImageError(false)
           }).catch(error => {
                setImagesLoading(false)
-               setImageError(imageErrors + 1)
+               setTimeout(() => {
+                    setImageError(imageErrors + 1)
+               }, 2000);
                console.log(error.message)
           })
         }, [imageErrors])

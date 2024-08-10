@@ -37,7 +37,7 @@ const Login = () => {
                toast.success(response.data.message)
                note(response.data.message)
                setTimeout(() => {
-                    location = '/'
+                    location = '/dashboard/user' || navigate("/dashboard")
                }, 2000)
           }).catch(error => {
                setLoading(false)

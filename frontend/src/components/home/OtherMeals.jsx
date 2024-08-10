@@ -11,7 +11,7 @@ const OtherMeals = () => {
           <h1 className={`text-xl md:text-2xl text-center font-bold mb-[1rem]`}>We provide additional lunch and supper meal.</h1>
           {imagesLoading == true ? (
                <div className={`w-full min-h-[5cm] bg-gray-400 animate-pulse rounded-md`}></div>
-          ) : imageErrors == true ? (
+          ) : imageErrors ? (
                <div className={`w-full max-sm:min-h-[4cm] sm:min-h-[5cm] lg:min-h-[6cm] 2xl:min-h-[7cm] bg-gray-400 rounded-md flex items-center justify-center`}>
                     Images not available!
                </div>

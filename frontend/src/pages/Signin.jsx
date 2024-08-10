@@ -20,8 +20,8 @@ const Signin = () => {
           const userId = JSON.parse(localStorage.getItem("User"))._id
           const name = JSON.parse(localStorage.getItem("User")).username
           const message = name + ", Your account was registered successfully"
-          // axios.post("http://localhost:5174/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: "", dateOfMake: ''}).then(response => {
-          axios.post("https://resto-jeremy.vercel.app/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: ""}).then(response => {
+          axios.post("http://localhost:5174/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: "", dateOfMake: ''}).then(response => {
+          // axios.post("https://resto-jeremy.vercel.app/createNotification", { userId: userId, productId: "", heading: heading, message: message, longMessage: ""}).then(response => {
                console.log(response.data.message)
           }).catch(error => {
                console.error(error.message)
@@ -30,15 +30,15 @@ const Signin = () => {
 
      const handleSignup = (e) => {
           e.preventDefault()
-          // axios.post("http://localhost:5174/signup", { username: username, email: emailContext, dob: dob, password: password, phone: phone, location: location})
-          axios.post("https://resto-jeremy.vercel.app/signup", { username: username, email: emailContext, dob: dob, password: password, phone: phone, location: location})
+          axios.post("http://localhost:5174/signup", { username: username, email: emailContext, dob: dob, password: password, phone: phone, location: location})
+          // axios.post("https://resto-jeremy.vercel.app/signup", { username: username, email: emailContext, dob: dob, password: password, phone: phone, location: location})
           .then(response => {
                localStorage.setItem("User", JSON.stringify(response.data.user))
                localStorage.setItem("Token", JSON.stringify(response.data.token))
                note(response.data.message)
                toast.success(response.data.message)
                setTimeout(() => {
-                    window.location = '/' || navigate('/')
+                    window.location = '/dashboard/user' || navigate('/dashboard')
                }, 2000)
           })
           .catch(error => {

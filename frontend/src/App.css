@@ -29,3 +29,11 @@
 .slick-slide > div {
      margin: 0 10px;
 }
+
+/* .no-connection-icon {
+     position: absolute;
+     clip-path: polygon(10% 20%, 40% 20%, 40% 70%, 10% 70%);
+     width: 150px;
+     height: 150px;
+     background-color: red;
+} */

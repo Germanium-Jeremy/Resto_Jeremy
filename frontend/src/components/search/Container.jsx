@@ -18,7 +18,7 @@ const Container = ({ setSearchShow }) => {
               return text.slice(0, maxLength) + '...';
           }
           return text;
-      }
+     }
       
 
      const filterProducts = (e) => {

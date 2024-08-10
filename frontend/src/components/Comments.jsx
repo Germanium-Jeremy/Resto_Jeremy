@@ -27,6 +27,13 @@ const Comments = () => {
           },]
      }
 
+     function truncateText(text, maxLength) {
+          if (text.length > maxLength) {
+              return text.slice(0, maxLength) + '...';
+          }
+          return text;
+     }
+
   return (
      <>
      <h1 className={`text-center text-xl font-bold`}>Top Reviews</h1>
@@ -36,7 +43,7 @@ const Comments = () => {
           <Slider {...settings}>
                {comments.map((comment, index) => {
                     return (
-                         <div className={`px-3 py-2 rounded-md bg-slate-50 shadow-md shadow-slate-700 min-h-[5cm]`} key={index}>
+                         <div className={`px-1 py-2 rounded-md bg-slate-50 shadow-md shadow-slate-700 min-h-[4cm] max-h-[4.1cm] mb-2`} key={index}>
                               <div className={`flex h-full mb-3`}>
                                    <div className={`w-10 h-10 rounded-full relative overflow-hidden bg-black mr-3`}>
                                         <img src={Image1} alt="User" className={`w-full h-full`} loading='lazy' />
@@ -44,7 +51,7 @@ const Comments = () => {
                                    </div>
                                    <p className={`text-md font-bold ml-3`}>{comment.username}</p>
                               </div>
-                              <p className={`text-sm font-semibold my-2 h-full text-center`}>{comment.comment}</p>
+                              <p className={`text-sm font-semibold my-2 h-full text-center`}>{truncateText(comment.comment, 55)}</p>
                          </div>
                     )
                })}

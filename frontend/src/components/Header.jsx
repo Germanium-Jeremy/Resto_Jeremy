@@ -62,7 +62,7 @@ const Header = () => {
           )}
             <FaBell />
           </button>
-          <p className={`max-sm:hidden text-xs`}>{user.username}</p>
+          <Link to={'/dashboard/user'} className={`max-sm:hidden text-xs`}>{user.username}</Link>
           <img src={Profile} alt="Profile" className='rounded-full h-6 w-6 border border-white p-1 max-sm:hidden' />
         </div>
       )}
@@ -87,7 +87,7 @@ const Header = () => {
           <Link to={'/home'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Home</Link>
           <Link to={'/diet'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Meals</Link>
           <Link to={'/drinks'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Drinks</Link>
-          {user && <Link to={'/'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Account</Link>}
+          {user && <Link to={'/dashboard/user'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Account</Link>}
           {user && <Link to={'/'} onClick={setFalse} className={`px-2 py-1 rounded-md shadow hover:shadow-white`}>Settings</Link>}
         </div>
         {!user && (
